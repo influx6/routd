@@ -1,0 +1,19 @@
+{
+  "name": "pathmax",
+  "version": "0.0.1",
+  "description": "a pattern matching libray",
+  "main": "./pathmax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "stackq":"0.x.x"
+  },
+  "keywords": ["url patterns","url","patterns"],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/influx6/pathmax"
+  },
+  "author": "Alexander Ewetumo",
+  "license": "mit"
+}
