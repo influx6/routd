@@ -1,18 +1,19 @@
 {
-  "name": "pathmax",
+  "name": "routd",
   "version": "0.0.1",
-  "description": "a pattern matching libray",
-  "main": "./pathmax.js",
+  "description": "a routing libray",
+  "main": "./routd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "stackq":"0.x.x"
+    "stackq":"0.x.x",
+    "pathmax":"0.x.x"
   },
-  "keywords": ["url patterns","url","patterns"],
+  "keywords": ["url patterns","url","patterns","routing","url routing"],
   "repository": {
     "type": "git",
-    "url": "http://github.com/influx6/pathmax"
+    "url": "http://github.com/influx6/routd"
   },
   "author": "Alexander Ewetumo",
   "license": "mit"
