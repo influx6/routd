@@ -4,10 +4,6 @@ var sq = require('stackq'),
 sq.Jazz('pathmax specifications',function(_){
 
   var r = rx.Router.make();
-  r.route('/',null,{
-    exactMatch: false,
-  });
-
   r.route('/blog','post');
 
   _('can i add a route: /home ?',function($){

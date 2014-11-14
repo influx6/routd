@@ -1,6 +1,7 @@
 var sq = require("stackq");
 var pm = require("pathmax");
 var routd = module.exports = {};
+var openEnded = /\*$/;
 
 routd.Router = sq.Class({
   init: function(conf){
@@ -13,15 +14,10 @@ routd.Router = sq.Class({
     this.once = this.events.$closure(this.events.once);
     this.offOnce = this.events.$closure(this.events.offOnce);
 
-    this.addRoot = function(){
-      return this.route('/',null,{ exactMatch: false });
-    };
-
     this.events.events('404');
   },
-  route: function(uri,method,conf){
+  route: function(uri,method,conf,rurl){
     method = sq.valids.isString(method) ? method.toLowerCase() : method;
-    // if(uri == '/') return this.addRoot();
     var rt = this.routes.Q(uri);
     if(rt){
       if(rt.methods.indexOf(method) == -1){
@@ -31,7 +27,7 @@ routd.Router = sq.Class({
     };
 
     var dfc = sq.Util.extends({},this.config,conf);
-    var urq = pm(uri,dfc);
+    var urq = pm(uri || rurl,dfc);
     urq.methods = [];
     urq.events = sq.EventStream.make();
 
