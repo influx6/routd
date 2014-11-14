@@ -13,34 +13,9 @@ routd.Router = sq.Class({
     this.once = this.events.$closure(this.events.once);
     this.offOnce = this.events.$closure(this.events.offOnce);
 
-    // this.addRoot = function(){
-    //   if(this.routes.has('/')) return this.get('/');
-    //   this.events.events('/');
-    //   var map = {
-    //       methods: [],
-    //       events: sq.EventStream.make(),
-    //       collect: function(f){
-    //         return {
-    //           'config': sq.Util.extends({},this.config),
-    //           'state': true,
-    //           'meta':{
-    //             'url': f,
-    //           },
-    //         }
-    //       }
-    //   };
-    //   map.on = map.events.$closure(map.events.on);
-    //   map.off = map.events.$closure(map.events.off);
-    //   map.once = map.events.$closure(map.events.once);
-    //   map.offOnce = map.events.$closure(map.events.offOnce);
-    //   this.events.on('/',function(ux,cx,mx){
-    //     if(cx){
-    //       map.events.emit(cx.toLowerCase(),ux,mx);
-    //     };
-    //   });
-    //   this.routes.add('/',map);
-    //   return map;
-    // }
+    this.addRoot = function(){
+      return this.route('/',null,{ exactMatch: false });
+    };
 
     this.events.events('404');
   },
