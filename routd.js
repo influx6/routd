@@ -35,7 +35,7 @@ routd.Router = sq.Class({
 
     this.events.on(uri,function(ux,cx,mx){
       if(cx){
-        urq.events.emit(cx.toLowerCase(),ux,mx);
+        urq.events.emit(cx.toLowerCase(),ux,mx,cx);
       };
     });
 
@@ -57,6 +57,7 @@ routd.Router = sq.Class({
     var state = false;
     this.routes.each(this.$closure(function(e,i,o,fn){
       var c = e.collect(url);
+      c.method = method;
       if(c.state){
         var isMethod = (e.methods.length > 0 && method && e.methods.indexOf(method) == -1);
         if(isMethod) return fn(false);
