@@ -9,10 +9,7 @@ routd.Router = sq.Class({
     this.routes = sq.Storage.make();
     this.events = sq.EventStream.make();
 
-    this.on = this.events.$closure(this.events.on);
-    this.off = this.events.$closure(this.events.off);
-    this.once = this.events.$closure(this.events.once);
-    this.offOnce = this.events.$closure(this.events.offOnce);
+    this.events.hookProxy(this);
 
     this.events.events('404');
   },
@@ -29,12 +26,9 @@ routd.Router = sq.Class({
     var dfc = sq.Util.extends({},this.config,conf);
     var urq = pm(uri || rurl,dfc);
     urq.methods = [];
-    urq.events = sq.EventStream.make();
-
-    urq.on = urq.events.$closure(urq.events.on);
-    urq.off = urq.events.$closure(urq.events.off);
-    urq.once = urq.events.$closure(urq.events.once);
-    urq.offOnce = urq.events.$closure(urq.events.offOnce);
+    var ev = urq.events = sq.EventStream.make();
+    urq.events.hookProxy(urq);
+    urq.events = ev;
 
     this.events.events(uri);
     this.routes.add(uri,urq);
