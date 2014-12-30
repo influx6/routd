@@ -55,6 +55,7 @@ routd.Router = sq.Class({
   analyze: function(url,method,payload){
     method = sq.valids.isString(method) ? method.toLowerCase() : method;
     var state = false;
+
     if(this.routes.isEmpty()){
       return this.events.emit('404',url,method,payload);
     };
@@ -62,6 +63,7 @@ routd.Router = sq.Class({
     this.routes.each(this.$closure(function(e,i,o,fn){
       var c = e.collect(url);
       c.method = method;
+
       if(c.state){
         var isMethod = (e.methods.length > 0 && method && e.methods.indexOf(method) == -1);
         if(isMethod) return fn({ i: i, e: e});
